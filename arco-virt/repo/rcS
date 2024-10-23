@@ -1,8 +1,6 @@
 mount -t proc proc /proc
 mount -t sysfs sysfs /sys
 
-mknod -m 666 /dev/tty2 c 4 2
-mknod -m 666 /dev/tty3 c 4 3
-mknod -m 666 /dev/tty4 c 4 4
+/bin/mdev -s
 
 echo "hello kirin7~"
