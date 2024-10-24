@@ -4,20 +4,15 @@ mkdir initrd
 # copy toolchains-sysroot
 tar -xvf repo/sysroot.tar.gz -C initrd
 # make essential dir
-mkdir initrd/proc
-mkdir initrd/dev
-mkdir initrd/sys
-mkdir initrd/etc/init.d/
 
 # copy executable to bin
-cp -r repo/bin/ initrd/bin
+cp -r repo/bin/* initrd/bin
 # copy init file
-cp repo/rcS initrd/etc/init.d/ # specify in busybox src, macro INIT_SCRIPT
-ln -s /bin/busybox initrd/init
+cp repo/init initrd/
 # create symlink of busybox
-cp repo/createbin.sh initrd
+cp repo/createlink.sh initrd
 cd initrd
-sh createbin.sh
+sh createlink.sh
 cd ..
 
 # make cpio.gz
