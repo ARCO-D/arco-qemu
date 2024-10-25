@@ -2,11 +2,12 @@
 
 mount -t proc proc /proc
 mount -t sysfs sysfs /sys
+mount -t tmpfs tmpfs /dev
 
 echo "hello kirin7~"
 
 /bin/mdev -s
 mount /dev/vda /data
 
-# this init is a symlink to busybox placed in /data/bin/init
+# this init is a symlink to busybox which placed in /data/bin/init
 exec switch_root /data /bin/init

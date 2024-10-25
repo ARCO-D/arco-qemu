@@ -14,10 +14,14 @@ tar -xvf repo/sysroot.tar.gz -C rootfs
 # copy executable to bin
 cp -r repo/bin/* rootfs/bin
 # copy init file
-cp repo/rcS rootfs/etc/init.d/
+cp repo/rc.sysinit rootfs/etc/rc.d/
+cp repo/inittab rootfs/etc/
+
 # create symlink of busybox
 cp repo/createlink.sh rootfs
 cd rootfs
 sh createlink.sh
 cd ..
 
+# end
+umount rootfs

@@ -5,3 +5,7 @@ Image initrd等在arco-virt路径下
 
 # clean
 执行路径下的clean.sh清理构建
+
+# 终端的账号密码
+用户root
+密码arco
