@@ -9,5 +9,8 @@
 -append "root=/dev/ram0 console=ttyAMA0 init=/linuxrc ignore_loglevel nokaslr" \
 -drive file=arco.img,if=none,id=sdc \
 -device virtio-blk-device,drive=sdc \
+-netdev bridge,br=virbr0,id=n1 -device virtio-net,netdev=n1
+
+#-nic bridge br=virbr0 \
 
 #-L /home/kirin7/qemu/qemu-8.1.5/pc-bios \

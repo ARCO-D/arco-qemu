@@ -1,0 +1,11 @@
+#!/bin/sh
+echo "sysinit~"
+
+/bin/mdev -s
+
+mount
+df -h
+
+ls /etc
+cat /etc/passwd
+echo "cat /etc/passwd done"
