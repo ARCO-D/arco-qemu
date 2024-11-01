@@ -1,4 +1,4 @@
 #!/bin/bash
 brctl show
-brctl delif br0 enp3s0
+brctl delif br0 ens37
 brctl delbr br0

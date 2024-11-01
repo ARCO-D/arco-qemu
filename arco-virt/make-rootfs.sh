@@ -3,7 +3,7 @@ umount rootfs
 rmdir rootfs
 mkdir rootfs
 # create empty image file
-dd if=/dev/zero of=arco.img bs=1024k count=512
+dd if=/dev/zero of=arco.img bs=1024k count=1024
 mkfs.ext4 arco.img 
 mount arco.img rootfs
 
