@@ -23,5 +23,13 @@ cd rootfs
 sh createlink.sh
 cd ..
 
+# install software
+cp repo/software/* rootfs/data/
+cd rootfs/data/
+tar -xvf gcc.tar.gz
+tar -xvf binutils-min.tar.gz
+rm *.tar.gz
+cd ../..
+
 # end
 umount rootfs
