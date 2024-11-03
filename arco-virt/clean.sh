@@ -7,3 +7,5 @@ gzip vmlinux
 echo "gzip vmlinux"
 rm virt.dtb virt.dts arco.dtb
 echo "rm virt.dtb virt.dts arco.dtb"
+rm arco.img
+echo "rm arco.img"

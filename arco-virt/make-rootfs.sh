@@ -24,12 +24,20 @@ sh createlink.sh
 cd ..
 
 # install software
-cp repo/software/* rootfs/data/
+## tar
+cp repo/install/* rootfs/data/
 cd rootfs/data/
-tar -xvf gcc.tar.gz
-tar -xvf binutils-min.tar.gz
+find . -maxdepth 1 -name "*.tar.gz" -exec tar -zxvf {} \;
 rm *.tar.gz
-cd ../..
+## link
+cd ../usr/bin/
+ln -s /data/ssh/bin/* .
+ln -s /data/ssh/sbin/* .
+ln -s /data/gcc/bin/* .
+ln -s /data/file-5.41/bin/* .
+ln -s /data/binutils-min/bin/* .
+cd ../../..
+
 
 # end
 umount rootfs
