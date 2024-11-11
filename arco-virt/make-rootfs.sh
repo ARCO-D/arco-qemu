@@ -29,13 +29,17 @@ cp repo/install/* rootfs/data/
 cd rootfs/data/
 find . -maxdepth 1 -name "*.tar.gz" -exec tar -zxvf {} \;
 rm *.tar.gz
+find . -maxdepth 1 -name "*.tar.xz" -exec tar -xvf {} \;
+rm *.tar.xz
 ## link
 cd ../usr/bin/
-ln -s /data/ssh/bin/* .
-ln -s /data/ssh/sbin/* .
-ln -s /data/gcc/bin/* .
-ln -s /data/file-5.41/bin/* .
-ln -s /data/binutils-min/bin/* .
+ln -s ../../data/ssh/bin/* .
+ln -s ../../data/ssh/sbin/* .
+ln -s ../../data/gcc/bin/* .
+ln -s ../../data/file-5.41/bin/* .
+ln -s ../../data/binutils-min/bin/* .
+ln -s ../../data/python/bin/* .
+ln -s python3 python
 cd ../../..
 
 

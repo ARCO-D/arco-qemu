@@ -5,8 +5,10 @@
 
 Image initrd等在arco-virt路径下
 
-# 环境
-ubuntu22.04
+# 环境信息
+构建环境 ubuntu22.04
+
+运行环境 linux-6.6.57
 
 # 运行
 本仓库不包含构建产物, 请参照此博客搭建QEMU编译环境, 在build目录下编译后才能使用
