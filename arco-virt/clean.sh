@@ -9,3 +9,9 @@ rm virt.dtb virt.dts arco.dtb
 echo "rm virt.dtb virt.dts arco.dtb"
 rm arco.img
 echo "rm arco.img"
+cd repo/sysroot
+./make-sysroot.sh
+cd ..
+rm -rf sysroot/*
+cd ..
+echo "rm sysroot"

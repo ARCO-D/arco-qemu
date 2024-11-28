@@ -3,6 +3,7 @@ rm -rf initrd
 mkdir initrd
 # copy toolchains-sysroot
 tar -xvf repo/sysroot.tar.gz -C initrd
+rm -rf initrd/usr
 # make essential dir
 
 # copy executable to bin

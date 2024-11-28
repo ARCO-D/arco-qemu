@@ -5,6 +5,7 @@ echo "sysinit~"
 
 mkdir /dev/pts
 mount -t devpts devpts /dev/pts
+mount /dev/vda1 /boot/efi
 
 mount
 df -h

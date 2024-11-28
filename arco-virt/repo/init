@@ -7,7 +7,9 @@ mount -t tmpfs tmpfs /dev
 echo "hello kirin7~"
 
 /bin/mdev -s
-mount /dev/vda /data
+mount /dev/vda2 /data
 
 # this init is a symlink to busybox which placed in /data/bin/init
 exec switch_root /data /bin/init
+# exec switch_root /data /usr/lib/systemd/systemd
+

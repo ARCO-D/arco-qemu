@@ -11,6 +11,6 @@
 -device virtio-blk-device,drive=sdc \
 -netdev tap,id=n1,ifname=tap0,script=qemu-ifup,downscript=qemu-ifdown \
 -net nic,model=virtio-net-pci,netdev=n1 \
-
+-s
 
 #-L /home/kirin7/qemu/qemu-8.1.5/pc-bios \

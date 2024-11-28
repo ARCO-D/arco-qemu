@@ -4,8 +4,30 @@ rmdir rootfs
 mkdir rootfs
 # create empty image file
 dd if=/dev/zero of=arco.img bs=1024k count=1024
-mkfs.ext4 arco.img 
-mount arco.img rootfs
+echo "n
+p
+1
+
++50M
+n
+p
+2
+
++900M
+t
+1
+ef
+w
+"| fdisk arco.img
+lof=`losetup -f`
+# p1 is for uefi, p2 is for rootfs
+echo "free loop device:$lof"
+losetup -P $lof arco.img
+mkfs.vfat -F32 "${lof}p1"
+mkfs.ext4 "${lof}p2"
+mount "${lof}p2" rootfs
+
+
 
 # copy toolchains-sysroot
 tar -xvf repo/sysroot.tar.gz -C rootfs
@@ -38,8 +60,10 @@ ln -s ../../data/ssh/sbin/* .
 ln -s ../../data/gcc/bin/* .
 ln -s ../../data/file-5.41/bin/* .
 ln -s ../../data/binutils-min/bin/* .
-ln -s ../../data/python/bin/* .
-ln -s python3 python
+# ln -s ../../data/python/bin/* .
+# ln -s python3 python
+ln -s ../../data/grub/bin/* .
+ln -s ../../data/grub/sbin/* .
 cd ../../..
 
 
