@@ -4,10 +4,11 @@
 -cpu cortex-a55 \
 -smp 4 \
 -m 1G \
--kernel Image \
+-bios edk2-aarch64-code.fd \
+-kernel Image-6.6.57 \
 -initrd initrd.cpio.gz \
 -append "root=/dev/ram0 console=ttyAMA0 init=/linuxrc ignore_loglevel nokaslr" \
--drive file=arco.img,if=none,id=sdc \
+-drive file=arco.img,if=none,id=sdc,format=raw \
 -device virtio-blk-device,drive=sdc \
 -netdev tap,id=n1,ifname=tap0,script=qemu-ifup,downscript=qemu-ifdown \
 -net nic,model=virtio-net-pci,netdev=n1 \

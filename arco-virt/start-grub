@@ -1,0 +1,14 @@
+../build/qemu-system-aarch64 \
+-nographic \
+-M virt \
+-cpu cortex-a55 \
+-smp 4 \
+-m 1G \
+-bios edk2-aarch64-code.fd \
+-net none \
+-drive file=arco.img,if=none,id=sdc,format=raw \
+-device virtio-blk-device,drive=sdc \
+-netdev tap,id=n1,ifname=tap0,script=qemu-ifup,downscript=qemu-ifdown \
+-net nic,model=virtio-net-pci,netdev=n1 \
+-s
+

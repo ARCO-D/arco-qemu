@@ -4,14 +4,18 @@ mkdir initrd
 # copy toolchains-sysroot
 tar -xvf repo/sysroot.tar.gz -C initrd
 rm -rf initrd/usr
+rm -rf initrd/data/*
 # make essential dir
 
 # copy executable to bin
 cp -r repo/bin/* initrd/bin
+# copy driver file
+# (consider the of compatible of kernel, do not copy driver file
+
 # copy init file
-cp repo/init initrd/
+cp repo/script/init initrd/
 # create symlink of busybox
-cp repo/createlink.sh initrd
+cp repo/script/createlink.sh initrd
 cd initrd
 sh createlink.sh
 cd ..
