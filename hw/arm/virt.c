@@ -850,6 +850,22 @@ static void create_gic(VirtMachineState *vms, MemoryRegion *mem)
     }
 }
 
+
+/* create_sdbus总线说明:
+ * mmin_map   : 内存起始地址是0x40000000 + 0x40000000(1G), 为了不冲突就从0x80000000开始了
+ * connect_irq: a15irqmap里占用了1-9,16+ 所以这里选了没占用的10和11; 0和1是pl181设备里声明的两根中断线
+ * cd-inserted: 不需要像vexpress那样配qdev_connect_gpio_out_named, 配了反而不行
+ */
+static void create_sdbus(const VirtMachineState *vms, MemoryRegion *mem)
+{
+    DeviceState *dev = qdev_new("pl181");
+    sysbus_realize_and_unref(SYS_BUS_DEVICE(dev), &error_fatal);
+    sysbus_mmio_map(SYS_BUS_DEVICE(dev), 0, 0x80000000);
+    // interrupt
+    sysbus_connect_irq(SYS_BUS_DEVICE(dev), 0, qdev_get_gpio_in(vms->gic, 10));
+    sysbus_connect_irq(SYS_BUS_DEVICE(dev), 1, qdev_get_gpio_in(vms->gic, 11));
+}
+
 static void create_uart(const VirtMachineState *vms, int uart,
                         MemoryRegion *mem, Chardev *chr)
 {
@@ -2263,11 +2279,11 @@ static void machvirt_init(MachineState *machine)
     fdt_add_pmu_nodes(vms);
 
     create_uart(vms, VIRT_UART, sysmem, serial_hd(0));
-
     if (vms->secure) {
         create_secure_ram(vms, secure_sysmem, secure_tag_sysmem);
         create_uart(vms, VIRT_SECURE_UART, secure_sysmem, serial_hd(1));
     }
+    create_sdbus(vms, sysmem);
 
     if (tag_sysmem) {
         create_tag_ram(tag_sysmem, vms->memmap[VIRT_MEM].base,

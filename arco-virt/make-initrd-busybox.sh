@@ -17,7 +17,7 @@ cp repo/bin/busybox initrd/init
 # create symlink of busybox
 cp repo/script/createlink.sh initrd
 # copy ko
-cp nvme.ko initrd
+cp repo/ko/* initrd
 # create busybox link
 cd initrd
 sh createlink.sh
