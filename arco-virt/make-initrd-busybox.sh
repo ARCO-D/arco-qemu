@@ -24,7 +24,7 @@ sh createlink.sh
 cd ..
 
 # make cpio.gz
-echo "find .|cpio -H newc -o|gzip -c > ../initrd.cpio.gz" > initrd/makecpiogz
+echo "find .|cpio -H newc -o|gzip -c > ../initrd-busybox.cpio.gz" > initrd/makecpiogz
 chmod +x initrd/makecpiogz
 cd initrd
 sh makecpiogz

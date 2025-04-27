@@ -10,6 +10,7 @@ mkdir /dev/pts
 mount -t devpts devpts /dev/pts
 mount /dev/vda1 /boot/efi
 mount -t efivarfs efivarfs /sys/firmware/efi/efivars/
+mount debugfs -t debugfs /sys/kernel/debug
 
 mount
 df -h
